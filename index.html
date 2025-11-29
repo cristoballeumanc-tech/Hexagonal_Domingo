@@ -183,11 +183,18 @@
       cursor: pointer;
       margin-right: 6px;
       margin-top: 6px;
+      transition: transform 0.05s ease, box-shadow 0.05s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15) inset;
     }
 
     .btn-primary {
-      background: --primary;
+      background: var(--primary);
       color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 200, 83, 0.4);
     }
 
     .btn-secondary {
@@ -351,21 +358,21 @@
               <!-- Ronda 2 -->
               <tr>
                 <td rowspan="3"><span class="round-label">R2<br>09:00–09:30</span></td>
-                <td>Cancha 1</td>
+                <td>Cancha 2</td>
                 <td class="name-cell">1️⃣ Juan Carlos – Vikingo</td>
                 <td><input class="score-input" type="number" min="0" id="m4_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m4_b" /></td>
                 <td class="name-cell">5️⃣ Leonardo – Gustavo</td>
               </tr>
               <tr>
-                <td>Cancha 2</td>
+                <td>Cancha 3</td>
                 <td class="name-cell">6️⃣ Matías – Martín</td>
                 <td><input class="score-input" type="number" min="0" id="m5_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m5_b" /></td>
                 <td class="name-cell">4️⃣ Camilo – Matías</td>
               </tr>
               <tr>
-                <td>Cancha 3</td>
+                <td>Cancha 1</td>
                 <td class="name-cell">2️⃣ Cristóbal – Nacho</td>
                 <td><input class="score-input" type="number" min="0" id="m6_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m6_b" /></td>
@@ -375,21 +382,21 @@
               <!-- Ronda 3 -->
               <tr>
                 <td rowspan="3"><span class="round-label">R3<br>09:30–10:00</span></td>
-                <td>Cancha 1</td>
+                <td>Cancha 3</td>
                 <td class="name-cell">1️⃣ Juan Carlos – Vikingo</td>
                 <td><input class="score-input" type="number" min="0" id="m7_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m7_b" /></td>
                 <td class="name-cell">4️⃣ Camilo – Matías</td>
               </tr>
               <tr>
-                <td>Cancha 2</td>
+                <td>Cancha 1</td>
                 <td class="name-cell">5️⃣ Leonardo – Gustavo</td>
                 <td><input class="score-input" type="number" min="0" id="m8_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m8_b" /></td>
                 <td class="name-cell">3️⃣ Benja – Hernán</td>
               </tr>
               <tr>
-                <td>Cancha 3</td>
+                <td>Cancha 2</td>
                 <td class="name-cell">6️⃣ Matías – Martín</td>
                 <td><input class="score-input" type="number" min="0" id="m9_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m9_b" /></td>
@@ -399,21 +406,21 @@
               <!-- Ronda 4 -->
               <tr>
                 <td rowspan="3"><span class="round-label">R4<br>10:00–10:30</span></td>
-                <td>Cancha 1</td>
+                <td>Cancha 2</td>
                 <td class="name-cell">1️⃣ Juan Carlos – Vikingo</td>
                 <td><input class="score-input" type="number" min="0" id="m10_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m10_b" /></td>
                 <td class="name-cell">3️⃣ Benja – Hernán</td>
               </tr>
               <tr>
-                <td>Cancha 2</td>
+                <td>Cancha 3</td>
                 <td class="name-cell">4️⃣ Camilo – Matías</td>
                 <td><input class="score-input" type="number" min="0" id="m11_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m11_b" /></td>
                 <td class="name-cell">2️⃣ Cristóbal – Nacho</td>
               </tr>
               <tr>
-                <td>Cancha 3</td>
+                <td>Cancha 1</td>
                 <td class="name-cell">5️⃣ Leonardo – Gustavo</td>
                 <td><input class="score-input" type="number" min="0" id="m12_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m12_b" /></td>
@@ -430,14 +437,14 @@
                 <td class="name-cell">2️⃣ Cristóbal – Nacho</td>
               </tr>
               <tr>
-                <td>Cancha 2</td>
+                <td>Cancha 3</td>
                 <td class="name-cell">3️⃣ Benja – Hernán</td>
                 <td><input class="score-input" type="number" min="0" id="m14_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m14_b" /></td>
                 <td class="name-cell">6️⃣ Matías – Martín</td>
               </tr>
               <tr>
-                <td>Cancha 3</td>
+                <td>Cancha 2</td>
                 <td class="name-cell">4️⃣ Camilo – Matías</td>
                 <td><input class="score-input" type="number" min="0" id="m15_a" /></td>
                 <td><input class="score-input" type="number" min="0" id="m15_b" /></td>
@@ -455,7 +462,7 @@
         </section>
       </div>
 
-      <!-- Columna derecha: Ranking + Cronómetros -->
+      <!-- Columna derecha: Ranking + Temporizadores -->
       <div>
         <!-- Ranking -->
         <section class="card">
@@ -484,16 +491,16 @@
           </table>
         </section>
 
-        <!-- Cronómetros -->
+        <!-- Temporizadores -->
         <section class="card">
           <div class="card-header">
-            <div class="card-title">Cronómetros por cancha</div>
-            <div class="card-time">Control de tiempo de cada partido</div>
+            <div class="card-title">Temporizadores (30 minutos)</div>
+            <div class="card-time">Cuenta regresiva por cancha</div>
           </div>
           <div class="timers-grid">
             <div class="timer-card">
               <div class="timer-title">Cancha 1</div>
-              <div class="timer-display" id="timer1">00:00</div>
+              <div class="timer-display" id="timer1">30:00</div>
               <div class="timer-buttons">
                 <button class="btn btn-primary" onclick="startTimer(1)">Iniciar</button>
                 <button class="btn btn-secondary" onclick="pauseTimer(1)">Pausar</button>
@@ -502,7 +509,7 @@
             </div>
             <div class="timer-card">
               <div class="timer-title">Cancha 2</div>
-              <div class="timer-display" id="timer2">00:00</div>
+              <div class="timer-display" id="timer2">30:00</div>
               <div class="timer-buttons">
                 <button class="btn btn-primary" onclick="startTimer(2)">Iniciar</button>
                 <button class="btn btn-secondary" onclick="pauseTimer(2)">Pausar</button>
@@ -511,7 +518,7 @@
             </div>
             <div class="timer-card">
               <div class="timer-title">Cancha 3</div>
-              <div class="timer-display" id="timer3">00:00</div>
+              <div class="timer-display" id="timer3">30:00</div>
               <div class="timer-buttons">
                 <button class="btn btn-primary" onclick="startTimer(3)">Iniciar</button>
                 <button class="btn btn-secondary" onclick="pauseTimer(3)">Pausar</button>
@@ -520,7 +527,7 @@
             </div>
           </div>
           <p class="cta">
-            <span>Máx. recomendado: 30 minutos por partido.</span>
+            <span>Temporizador de 30:00 a 00:00 por partido.</span>
           </p>
         </section>
       </div>
@@ -662,11 +669,12 @@
       tbody.innerHTML = "";
     }
 
-    // Cronómetros
+    // Temporizadores (30 minutos cuenta regresiva)
+    const INITIAL_SECONDS = 30 * 60; // 30 minutos
     const timers = {
-      1: { seconds: 0, interval: null },
-      2: { seconds: 0, interval: null },
-      3: { seconds: 0, interval: null }
+      1: { seconds: INITIAL_SECONDS, interval: null },
+      2: { seconds: INITIAL_SECONDS, interval: null },
+      3: { seconds: INITIAL_SECONDS, interval: null }
     };
 
     function formatTime(sec) {
@@ -684,10 +692,15 @@
 
     function startTimer(court) {
       const t = timers[court];
-      if (t.interval) return; // ya corriendo
+      if (t.interval || t.seconds <= 0) return; // ya corriendo o llegó a 0
       t.interval = setInterval(() => {
-        t.seconds++;
-        updateTimerDisplay(court);
+        if (t.seconds > 0) {
+          t.seconds--;
+          updateTimerDisplay(court);
+        } else {
+          clearInterval(t.interval);
+          t.interval = null;
+        }
       }, 1000);
     }
 
@@ -705,7 +718,7 @@
         clearInterval(t.interval);
         t.interval = null;
       }
-      t.seconds = 0;
+      t.seconds = INITIAL_SECONDS;
       updateTimerDisplay(court);
     }
 
