@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fixture Hexagonal Open – Domingo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #00c853;
+      --primary-dark: #009624;
+      --bg: #f4f4f4;
+      --card-bg: #ffffff;
+      --text-main: #222222;
+      --text-muted: #666666;
+      --border-radius: 14px;
+      --shadow: 0 4px 14px rgba(0,0,0,0.08);
+      --accent: #ffb300;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #e8f5e9 0, #f4f4f4 50%, #f4f4f4 100%);
+      color: var(--text-main);
+      padding: 20px;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(0, 200, 83, 0.1);
+      color: var(--primary-dark);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 6px 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 16px 18px 18px;
+      margin-bottom: 12px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .card-time {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .pairs-list {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    .pairs-list li {
+      padding: 3px 0;
+      font-size: 0.95rem;
+    }
+
+    .pairs-list span.num {
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    thead {
+      background: #f1f8e9;
+    }
+
+    th, td {
+      padding: 6px 4px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    td.name-cell {
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    input.score-input {
+      width: 52px;
+      padding: 3px 4px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .round-label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-right: 6px;
+      margin-top: 6px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    .btn-danger {
+      background: #d32f2f;
+      color: #fff;
+    }
+
+    .ranking-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .timers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .timer-card {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+
+    .timer-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timer-display {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 4px 0 6px;
+    }
+
+    .timer-buttons .btn {
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      margin: 2px;
+    }
+
+    .cta {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    .cta span {
+      background: rgba(255, 179, 0, 0.1);
+      border-radius: 999px;
+      padding: 4px 10px;
+      color: #8d6e00;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      table {
+        font-size: 0.8rem;
+      }
+      th, td {
+        padding: 4px 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="badge">Hexagonal Open – Quimey Pádel</div>
+      <h1>Fixture Oficial – Domingo</h1>
+      <p class="subtitle">Todos contra todos · 3 canchas · Partidos de 30 minutos</p>
+      <div class="meta">
+        <div class="pill">🕣 Inicio: <strong>08:30 hrs</strong></div>
+        <div class="pill">🎾 6 parejas · 5 partidos cada una</div>
+        <div class="pill">📍 Quimey Pádel Low Cost</div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <!-- Columna izquierda: Parejas + Partidos -->
+      <div>
+        <!-- Parejas -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">Parejas inscritas</div>
+            <div class="card-time">Hexagonal Open – Domingo</div>
+          </div>
+          <ul class="pairs-list">
+            <li><span class="num">1️⃣</span><strong>Juan Carlos – Vikingo</strong></li>
+            <li><span class="num">2️⃣</span><strong>Cristóbal – Nacho</strong></li>
+            <li><span class="num">3️⃣</span><strong>Benja – Hernán</strong></li>
+            <li><span class="num">4️⃣</span><strong>Camilo – Matías</strong></li>
+            <li><span class="num">5️⃣</span><strong>Leonardo – Gustavo</strong></li>
+            <li><span class="num">6️⃣</span><strong>Matías – Martín</strong></li>
+          </ul>
+        </section>
+
+        <!-- Partidos con inputs -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">Partidos y resultados</div>
+            <div class="card-time">Ingresa los games de cada pareja</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Ronda</th>
+                <th>Cancha</th>
+                <th>Pareja A</th>
+                <th>GF</th>
+                <th>GF</th>
+                <th>Pareja B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Ronda 1 -->
+              <tr>
+                <td rowspan="3"><span class="round-label">R1<br>08:30–09:00</span></td>
+                <td>Cancha 1</td>
+                <td class="name-cell">1️⃣ Juan Carlos – Vikingo</td>
+                <td><input class="score-input" type="number" min="0" id="m1_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m1_b" /></td>
+                <td class="name-cell">6️⃣ Matías – Martín</td>
+              </tr>
+              <tr>
+                <td>Cancha 2</td>
+                <td class="name-cell">2️⃣ Cristóbal – Nacho</td>
+                <td><input class="score-input" type="number" min="0" id="m2_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m2_b" /></td>
+                <td class="name-cell">5️⃣ Leonardo – Gustavo</td>
+              </tr>
+              <tr>
+                <td>Cancha 3</td>
+                <td class="name-cell">3️⃣ Benja – Hernán</td>
+                <td><input class="score-input" type="number" min="0" id="m3_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m3_b" /></td>
+                <td class="name-cell">4️⃣ Camilo – Matías</td>
+              </tr>
+
+              <!-- Ronda 2 -->
+              <tr>
+                <td rowspan="3"><span class="round-label">R2<br>09:00–09:30</span></td>
+                <td>Cancha 1</td>
+                <td class="name-cell">1️⃣ Juan Carlos – Vikingo</td>
+                <td><input class="score-input" type="number" min="0" id="m4_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m4_b" /></td>
+                <td class="name-cell">5️⃣ Leonardo – Gustavo</td>
+              </tr>
+              <tr>
+                <td>Cancha 2</td>
+                <td class="name-cell">6️⃣ Matías – Martín</td>
+                <td><input class="score-input" type="number" min="0" id="m5_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m5_b" /></td>
+                <td class="name-cell">4️⃣ Camilo – Matías</td>
+              </tr>
+              <tr>
+                <td>Cancha 3</td>
+                <td class="name-cell">2️⃣ Cristóbal – Nacho</td>
+                <td><input class="score-input" type="number" min="0" id="m6_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m6_b" /></td>
+                <td class="name-cell">3️⃣ Benja – Hernán</td>
+              </tr>
+
+              <!-- Ronda 3 -->
+              <tr>
+                <td rowspan="3"><span class="round-label">R3<br>09:30–10:00</span></td>
+                <td>Cancha 1</td>
+                <td class="name-cell">1️⃣ Juan Carlos – Vikingo</td>
+                <td><input class="score-input" type="number" min="0" id="m7_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m7_b" /></td>
+                <td class="name-cell">4️⃣ Camilo – Matías</td>
+              </tr>
+              <tr>
+                <td>Cancha 2</td>
+                <td class="name-cell">5️⃣ Leonardo – Gustavo</td>
+                <td><input class="score-input" type="number" min="0" id="m8_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m8_b" /></td>
+                <td class="name-cell">3️⃣ Benja – Hernán</td>
+              </tr>
+              <tr>
+                <td>Cancha 3</td>
+                <td class="name-cell">6️⃣ Matías – Martín</td>
+                <td><input class="score-input" type="number" min="0" id="m9_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m9_b" /></td>
+                <td class="name-cell">2️⃣ Cristóbal – Nacho</td>
+              </tr>
+
+              <!-- Ronda 4 -->
+              <tr>
+                <td rowspan="3"><span class="round-label">R4<br>10:00–10:30</span></td>
+                <td>Cancha 1</td>
+                <td class="name-cell">1️⃣ Juan Carlos – Vikingo</td>
+                <td><input class="score-input" type="number" min="0" id="m10_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m10_b" /></td>
+                <td class="name-cell">3️⃣ Benja – Hernán</td>
+              </tr>
+              <tr>
+                <td>Cancha 2</td>
+                <td class="name-cell">4️⃣ Camilo – Matías</td>
+                <td><input class="score-input" type="number" min="0" id="m11_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m11_b" /></td>
+                <td class="name-cell">2️⃣ Cristóbal – Nacho</td>
+              </tr>
+              <tr>
+                <td>Cancha 3</td>
+                <td class="name-cell">5️⃣ Leonardo – Gustavo</td>
+                <td><input class="score-input" type="number" min="0" id="m12_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m12_b" /></td>
+                <td class="name-cell">6️⃣ Matías – Martín</td>
+              </tr>
+
+              <!-- Ronda 5 -->
+              <tr>
+                <td rowspan="3"><span class="round-label">R5<br>10:30–11:00</span></td>
+                <td>Cancha 1</td>
+                <td class="name-cell">1️⃣ Juan Carlos – Vikingo</td>
+                <td><input class="score-input" type="number" min="0" id="m13_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m13_b" /></td>
+                <td class="name-cell">2️⃣ Cristóbal – Nacho</td>
+              </tr>
+              <tr>
+                <td>Cancha 2</td>
+                <td class="name-cell">3️⃣ Benja – Hernán</td>
+                <td><input class="score-input" type="number" min="0" id="m14_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m14_b" /></td>
+                <td class="name-cell">6️⃣ Matías – Martín</td>
+              </tr>
+              <tr>
+                <td>Cancha 3</td>
+                <td class="name-cell">4️⃣ Camilo – Matías</td>
+                <td><input class="score-input" type="number" min="0" id="m15_a" /></td>
+                <td><input class="score-input" type="number" min="0" id="m15_b" /></td>
+                <td class="name-cell">5️⃣ Leonardo – Gustavo</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-top:8px;">
+            <button class="btn btn-primary" onclick="updateRanking()">Actualizar ranking</button>
+            <button class="btn btn-secondary" onclick="clearScores()">Borrar resultados</button>
+          </div>
+          <p class="ranking-note">
+            Sistema de puntos: <strong>Victoria = 2 pts</strong>, <strong>Empate = 1 pt</strong>, Derrota = 0 pts.
+          </p>
+        </section>
+      </div>
+
+      <!-- Columna derecha: Ranking + Cronómetros -->
+      <div>
+        <!-- Ranking -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">Tabla de posiciones</div>
+            <div class="card-time">Se actualiza con los resultados</div>
+          </div>
+          <table id="ranking-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="name-cell">Pareja</th>
+                <th>PJ</th>
+                <th>G</th>
+                <th>E</th>
+                <th>P</th>
+                <th>GF</th>
+                <th>GC</th>
+                <th>DG</th>
+                <th>Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Se llena por JS -->
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Cronómetros -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">Cronómetros por cancha</div>
+            <div class="card-time">Control de tiempo de cada partido</div>
+          </div>
+          <div class="timers-grid">
+            <div class="timer-card">
+              <div class="timer-title">Cancha 1</div>
+              <div class="timer-display" id="timer1">00:00</div>
+              <div class="timer-buttons">
+                <button class="btn btn-primary" onclick="startTimer(1)">Iniciar</button>
+                <button class="btn btn-secondary" onclick="pauseTimer(1)">Pausar</button>
+                <button class="btn btn-danger" onclick="resetTimer(1)">Reiniciar</button>
+              </div>
+            </div>
+            <div class="timer-card">
+              <div class="timer-title">Cancha 2</div>
+              <div class="timer-display" id="timer2">00:00</div>
+              <div class="timer-buttons">
+                <button class="btn btn-primary" onclick="startTimer(2)">Iniciar</button>
+                <button class="btn btn-secondary" onclick="pauseTimer(2)">Pausar</button>
+                <button class="btn btn-danger" onclick="resetTimer(2)">Reiniciar</button>
+              </div>
+            </div>
+            <div class="timer-card">
+              <div class="timer-title">Cancha 3</div>
+              <div class="timer-display" id="timer3">00:00</div>
+              <div class="timer-buttons">
+                <button class="btn btn-primary" onclick="startTimer(3)">Iniciar</button>
+                <button class="btn btn-secondary" onclick="pauseTimer(3)">Pausar</button>
+                <button class="btn btn-danger" onclick="resetTimer(3)">Reiniciar</button>
+              </div>
+            </div>
+          </div>
+          <p class="cta">
+            <span>Máx. recomendado: 30 minutos por partido.</span>
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Datos de parejas
+    const teams = [
+      { id: 1, name: "Juan Carlos – Vikingo" },
+      { id: 2, name: "Cristóbal – Nacho" },
+      { id: 3, name: "Benja – Hernán" },
+      { id: 4, name: "Camilo – Matías" },
+      { id: 5, name: "Leonardo – Gustavo" },
+      { id: 6, name: "Matías – Martín" }
+    ];
+
+    // Partidos con referencia a inputs
+    const matches = [
+      { id: "m1",  a: 1, b: 6 },
+      { id: "m2",  a: 2, b: 5 },
+      { id: "m3",  a: 3, b: 4 },
+      { id: "m4",  a: 1, b: 5 },
+      { id: "m5",  a: 6, b: 4 },
+      { id: "m6",  a: 2, b: 3 },
+      { id: "m7",  a: 1, b: 4 },
+      { id: "m8",  a: 5, b: 3 },
+      { id: "m9",  a: 6, b: 2 },
+      { id: "m10", a: 1, b: 3 },
+      { id: "m11", a: 4, b: 2 },
+      { id: "m12", a: 5, b: 6 },
+      { id: "m13", a: 1, b: 2 },
+      { id: "m14", a: 3, b: 6 },
+      { id: "m15", a: 4, b: 5 }
+    ];
+
+    function createEmptyStats() {
+      const stats = {};
+      teams.forEach(t => {
+        stats[t.id] = {
+          id: t.id,
+          name: t.name,
+          played: 0,
+          wins: 0,
+          draws: 0,
+          losses: 0,
+          gf: 0,
+          ga: 0,
+          pts: 0
+        };
+      });
+      return stats;
+    }
+
+    function updateRanking() {
+      const stats = createEmptyStats();
+
+      matches.forEach(m => {
+        const aInput = document.getElementById(m.id + "_a");
+        const bInput = document.getElementById(m.id + "_b");
+        if (!aInput || !bInput) return;
+
+        const aVal = parseInt(aInput.value, 10);
+        const bVal = parseInt(bInput.value, 10);
+
+        if (isNaN(aVal) || isNaN(bVal)) {
+          return; // partido sin jugar
+        }
+
+        const teamA = stats[m.a];
+        const teamB = stats[m.b];
+
+        teamA.played++;
+        teamB.played++;
+        teamA.gf += aVal;
+        teamA.ga += bVal;
+        teamB.gf += bVal;
+        teamB.ga += aVal;
+
+        if (aVal > bVal) {
+          teamA.wins++;
+          teamB.losses++;
+          teamA.pts += 2; // victoria = 2 pts
+        } else if (bVal > aVal) {
+          teamB.wins++;
+          teamA.losses++;
+          teamB.pts += 2;
+        } else { // empate
+          teamA.draws++;
+          teamB.draws++;
+          teamA.pts += 1;
+          teamB.pts += 1;
+        }
+      });
+
+      // Convertir a array y ordenar
+      const rows = Object.values(stats);
+      rows.forEach(r => {
+        r.dg = r.gf - r.ga;
+      });
+
+      rows.sort((a, b) => {
+        if (b.pts !== a.pts) return b.pts - a.pts;
+        if (b.dg !== a.dg) return b.dg - a.dg;
+        if (b.gf !== a.gf) return b.gf - a.gf;
+        return a.name.localeCompare(b.name);
+      });
+
+      // Pintar tabla
+      const tbody = document.querySelector("#ranking-table tbody");
+      tbody.innerHTML = "";
+
+      rows.forEach((r, index) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td class="name-cell">${r.id}️⃣ ${r.name}</td>
+          <td>${r.played}</td>
+          <td>${r.wins}</td>
+          <td>${r.draws}</td>
+          <td>${r.losses}</td>
+          <td>${r.gf}</td>
+          <td>${r.ga}</td>
+          <td>${r.dg}</td>
+          <td><strong>${r.pts}</strong></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function clearScores() {
+      matches.forEach(m => {
+        const aInput = document.getElementById(m.id + "_a");
+        const bInput = document.getElementById(m.id + "_b");
+        if (aInput) aInput.value = "";
+        if (bInput) bInput.value = "";
+      });
+      const tbody = document.querySelector("#ranking-table tbody");
+      tbody.innerHTML = "";
+    }
+
+    // Cronómetros
+    const timers = {
+      1: { seconds: 0, interval: null },
+      2: { seconds: 0, interval: null },
+      3: { seconds: 0, interval: null }
+    };
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    }
+
+    function updateTimerDisplay(court) {
+      const el = document.getElementById("timer" + court);
+      if (el) {
+        el.textContent = formatTime(timers[court].seconds);
+      }
+    }
+
+    function startTimer(court) {
+      const t = timers[court];
+      if (t.interval) return; // ya corriendo
+      t.interval = setInterval(() => {
+        t.seconds++;
+        updateTimerDisplay(court);
+      }, 1000);
+    }
+
+    function pauseTimer(court) {
+      const t = timers[court];
+      if (t.interval) {
+        clearInterval(t.interval);
+        t.interval = null;
+      }
+    }
+
+    function resetTimer(court) {
+      const t = timers[court];
+      if (t.interval) {
+        clearInterval(t.interval);
+        t.interval = null;
+      }
+      t.seconds = 0;
+      updateTimerDisplay(court);
+    }
+
+    // Inicializar displays
+    updateTimerDisplay(1);
+    updateTimerDisplay(2);
+    updateTimerDisplay(3);
+  </script>
+</body>
+</html>
